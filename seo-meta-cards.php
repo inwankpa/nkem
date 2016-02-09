@@ -1,0 +1,8 @@
+<meta name="twitter:card" content="<?php $_twitter_large = get_post_meta( get_the_ID(), 'large_card', true ); $_twitter_mode = ($_twitter_large) ? "summary_large_card" : "summary"; echo $_twitter_mode; ?>" />
+<meta name="twitter:title" content="<?php $custom_title = get_post_meta($post->ID, "Custom Title", true); if ($custom_title) { ?><?php echo $custom_title; ?><?php } else { ?><?php the_title(); ?><?php } ?>" />
+<meta name="twitter:description" content="<?php $meta_description_value = get_post_meta( get_the_ID(), '_aioseop_description', true ); if ( ! empty( $meta_description_value ) ) {    echo $meta_description_value; } ?>" />
+<meta name="twitter:image" content="<?php $featured_img_url = wp_get_attachment_url( get_post_thumbnail_id($post->ID, 'thumbnail') ); $twitter_image_value = get_post_meta( get_the_ID(), 'card_image', true ); $meta_share_url = ""; if (!empty($featured_img_url)) { $meta_share_url = $featured_img_url; } elseif (!empty($twitter_image_value)) { $meta_share_url = $twitter_image_value; } /* else { $meta_share_url = "/default.jpg"; } */
+ if (!empty($meta_share_url)) {echo $meta_share_url;} ?>" />
+<meta property="og:url" content="<?php $url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; echo $url; ?>" />
+<meta property="og:type" content="<?php $_p_type = (get_post_type(get_the_ID()) == "page") ? "website" : "article"; echo $_p_type; ?>" />
+<meta property="og:image" content="<?php if (!empty($meta_share_url)) {echo $meta_share_url;} else {echo "/default.jpg";} ?>" />
